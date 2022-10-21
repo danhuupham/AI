@@ -67,4 +67,4 @@ def dfs(matrix, start, end, heuristic=None):
 
         return cost[end], route, visited
     else:
-        return -1, [], visited
+        return 'NO', [], visited

@@ -71,4 +71,4 @@ def ucs(matrix, start, end, heuristic=None):
 
         return cost[end], route, visited
     else:
-        return -1, [], []
+        return 'NO', [], visited

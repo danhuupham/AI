@@ -72,4 +72,4 @@ def astar(matrix, start, end, heuristic):
 
         return cost[end], route, visited
     else:
-        return -1, [], []
+        return 'NO', [], visited

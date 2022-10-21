@@ -1,3 +1,4 @@
+from re import search
 from search import *
 
 input1 = '../input/level_1/input1.txt'
@@ -5,6 +6,10 @@ input2 = '../input/level_1/input2.txt'
 input3 = '../input/level_1/input3.txt'
 input4 = '../input/level_1/input4.txt'
 input5 = '../input/level_1/input5.txt'
+input6 = '../input/level_2/input1.txt'
+input7 = '../input/level_2/input2.txt'
+input8 = '../input/level_2/input3.txt'
+
 
 search_without_bonus(input1, dfs)
 search_without_bonus(input1, bfs)
@@ -45,3 +50,10 @@ search_without_bonus(input5, gbfs, manhattan_distance)
 search_without_bonus(input5, gbfs, euclidean_distance)
 search_without_bonus(input5, astar, manhattan_distance)
 search_without_bonus(input5, astar, euclidean_distance)
+
+search_with_bonus(input6, manhattan_distance)
+search_with_bonus(input7, manhattan_distance)
+search_with_bonus(input8, manhattan_distance)
+search_with_bonus(input6, euclidean_distance)
+search_with_bonus(input7, euclidean_distance)
+search_with_bonus(input8, euclidean_distance)
