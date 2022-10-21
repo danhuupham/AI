@@ -19,11 +19,11 @@ def search_without_bonus(input_file, algorithm, heuristic=None):
         os.makedirs(output_folder)
 
     if heuristic is not None and heuristic.__name__ == 'manhattan_distance':
-        output_txt = output_folder + 'heuristic_' + algorithm.__name__ + '_1.txt'
-        output_jpg = output_folder + 'heuristic_' + algorithm.__name__ + '_1.jpg'
+        output_txt = output_folder + algorithm.__name__ + '_heuristic_1.txt'
+        output_jpg = output_folder + algorithm.__name__ + '_heuristic_1.jpg'
     elif heuristic is not None and heuristic.__name__ == 'euclidean_distance':
-        output_txt = output_folder + 'heuristic_' + algorithm.__name__ + '_2.txt'
-        output_jpg = output_folder + 'heuristic_' + algorithm.__name__ + '_2.jpg'
+        output_txt = output_folder + algorithm.__name__ + '_heuristic_2.txt'
+        output_jpg = output_folder + algorithm.__name__ + '_heuristic_2.jpg'
     else:
         output_txt = output_folder + algorithm.__name__ + '.txt'
         output_jpg = output_folder + algorithm.__name__ + '.jpg'
@@ -36,26 +36,23 @@ def search_without_bonus(input_file, algorithm, heuristic=None):
                    route, visited).savefig(output_jpg)
 
 
-def search_with_bonus(input_file, algorithm, heuristic=None):
+def search_with_bonus(input_file, heuristic):
     bonus_points, matrix, start, end = read_file(input_file)
-    cost, route, visited = algorithm(
+    cost, route, visited = astar_bonus(
         matrix, start, end, heuristic, bonus_points)
 
     output_folder = '../output/' + input_file.split('/')[2] + '/' + \
         input_file.split('/')[3].split('.')[0] + '/' + \
-        algorithm.__name__ + '/'
+        astar_bonus.__name__ + '/'
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
 
-    if heuristic is not None and heuristic.__name__ == 'manhattan_distance':
-        output_txt = output_folder + 'heuristic_' + algorithm.__name__ + '_1.txt'
-        output_jpg = output_folder + 'heuristic_' + algorithm.__name__ + '_1.jpg'
-    elif heuristic is not None and heuristic.__name__ == 'euclidean_distance':
-        output_txt = output_folder + 'heuristic_' + algorithm.__name__ + '_2.txt'
-        output_jpg = output_folder + 'heuristic_' + algorithm.__name__ + '_2.jpg'
-    else:
-        output_txt = output_folder + algorithm.__name__ + '.txt'
-        output_jpg = output_folder + algorithm.__name__ + '.jpg'
+    if heuristic.__name__ == 'manhattan_distance':
+        output_txt = output_folder + 'astar_heuristic_1.txt'
+        output_jpg = output_folder + 'astar_heuristic_1.jpg'
+    elif heuristic.__name__ == 'euclidean_distance':
+        output_txt = output_folder + 'astar_heuristic_2.txt'
+        output_jpg = output_folder + 'astar_heuristic_2.jpg'
 
     f = open(output_txt, 'w')
     f.write(str(cost))

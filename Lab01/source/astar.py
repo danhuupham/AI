@@ -87,10 +87,6 @@ def astar_bonus(matrix, start, end, heuristic, bonus_points):
         2. The route from the starting point to the ending one, defined by an array of (x, y), e.g. route = [(1, 2), (1, 3), (1, 4)]
         3. The visited nodes
     """
-    #  A Star algorithm with bonus points
-    #  if x is a bonus point, then the cost of x is x[2]
-    #  else the cost of x is 1
-    #  the cost of the route is the sum of the cost of each point in the route
 
     # 1. Define the walls
     walls = [(i, j) for i in range(len(matrix))
