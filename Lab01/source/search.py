@@ -13,9 +13,6 @@ def search_without_bonus(input_file, algorithm, heuristic=None):
     cost, route, visited = algorithm(
         matrix, start, end, heuristic)
 
-    # output_folder = '../output/' + input_file.split('/')[2] + '/' + \
-    #     input_file.split('/')[3].split('.')[0] + '/' + \
-    #     algorithm.__name__ + '/'
     output_folder = '../output/level_1/' + \
         input_file.split('/')[3].split('.')[0] + '/' + \
         algorithm.__name__ + '/'
@@ -46,9 +43,6 @@ def search_with_bonus(input_file, algorithm, heuristic):
     cost, route, visited = astar(
         matrix, start, end, heuristic, bonus_points)
 
-    # output_folder = '../output/' + input_file.split('/')[2] + '/' + \
-    #     input_file.split('/')[3].split('.')[0] + '/' + \
-    #     astar.__name__ + '/'
     output_folder = '../output/level_2/' + \
         input_file.split('/')[3].split('.')[0] + '/' + \
         algorithm.__name__ + '/'
@@ -80,9 +74,6 @@ def search_with_portals(input_file, algorithm, heuristic=None):
     cost, route, visited = algorithm(
         matrix, start, end, heuristic, bonus_points, portals)
 
-    # output_folder = '../output/' + input_file.split('/')[2] + '/' + \
-    #     input_file.split('/')[3].split('.')[0] + '/' + \
-    #     algorithm.__name__ + '/'
     output_folder = '../output/advance/' + \
         input_file.split('/')[3].split('.')[0] + '/' + \
         algorithm.__name__ + '/'
@@ -106,16 +97,3 @@ def search_with_portals(input_file, algorithm, heuristic=None):
 
     visualize_maze(matrix, bonus_points, start, end,
                    route, visited, portals).savefig(output_jpg)
-
-
-# def search_test(input_file):
-#     bonus_points, portals, matrix, start, end = read_file_portals(input_file)
-#     cost, route, visited = astar_bonus_portals(
-#         matrix, start, end, manhattan_distance, bonus_points, portals)
-
-#     f = open('_output_test.txt', 'w')
-#     f.write(str(cost))
-#     f.close()
-
-#     visualize_maze_portals(matrix, bonus_points, portals, start, end,
-#                            route, visited).savefig('_output_test.jpg')
