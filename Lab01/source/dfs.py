@@ -1,4 +1,4 @@
-def dfs(matrix, start, end, heuristic=None):
+def dfs(matrix, start, end, heuristic=None, bonus_points=[], portals=[]):
     """
     Args:
         1. matrix: The matrix read from the input file,
@@ -36,7 +36,10 @@ def dfs(matrix, start, end, heuristic=None):
     cost = {}
     cost[start] = 0
 
-    # 7. Define the flag
+    # 7. Define portals
+    portals_dict = {tuple(portal[:2]): tuple(portal[2:]) for portal in portals}
+
+    # 8. Define the flag
     flag = False
 
     while stack:
@@ -48,16 +51,27 @@ def dfs(matrix, start, end, heuristic=None):
             x = current[0] + dx[i]
             y = current[1] + dy[i]
             if (x, y) not in walls and (x, y) not in visited:
+                if (x, y) in portals_dict:
+                    visited.append((x, y))
+                    x, y = portals_dict[(x, y)]
                 stack.append((x, y))
                 visited.append((x, y))
                 parent[(x, y)] = current
                 cost[(x, y)] = cost[current] + 1
 
-    # 8. Return the route
+    # 9. Return the route
     if flag:
+        current = end
         while current != start:
-            route.append(current)
-            current = parent[current]
+            if current in portals_dict.values():
+                tp = list(portals_dict.keys())[
+                    list(portals_dict.values()).index(current)]
+                route.append(current)
+                route.append(tp)
+                current = parent[current]
+            else:
+                route.append(current)
+                current = parent[current]
         route.append(start)
         route.reverse()
 
